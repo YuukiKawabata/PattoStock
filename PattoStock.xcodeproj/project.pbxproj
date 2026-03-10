@@ -6,14 +6,71 @@
 	objectVersion = 77;
 	objects = {
 
+/* Begin PBXBuildFile section */
+		B6A339442F604F70004EBEBA /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = B6A339432F604F70004EBEBA /* GoogleService-Info.plist */; };
+		B6A339472F60526A004EBEBA /* FirebaseCore in Frameworks */ = {isa = PBXBuildFile; productRef = B6A339462F60526A004EBEBA /* FirebaseCore */; };
+		B6A339492F60527B004EBEBA /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = B6A339482F60527B004EBEBA /* FirebaseFirestore */; };
+		B6A3394B2F60528A004EBEBA /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = B6A3394A2F60528A004EBEBA /* FirebaseAuth */; };
+		B6A33A532F606786004EBEBA /* WidgetKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B6A33A522F606786004EBEBA /* WidgetKit.framework */; };
+		B6A33A552F606786004EBEBA /* SwiftUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B6A33A542F606786004EBEBA /* SwiftUI.framework */; };
+		B6A33A602F606787004EBEBA /* PattoStockWidgetExtension.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = B6A33A512F606786004EBEBA /* PattoStockWidgetExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		B6A33A5E2F606787004EBEBA /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = B6A339022F604975004EBEBA /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = B6A33A502F606786004EBEBA;
+			remoteInfo = PattoStockWidgetExtension;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		B6A33A612F606787004EBEBA /* Embed Foundation Extensions */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 13;
+			files = (
+				B6A33A602F606787004EBEBA /* PattoStockWidgetExtension.appex in Embed Foundation Extensions */,
+			);
+			name = "Embed Foundation Extensions";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
 		B6A3390A2F604975004EBEBA /* PattoStock.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PattoStock.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		B6A339432F604F70004EBEBA /* GoogleService-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		B6A33A512F606786004EBEBA /* PattoStockWidgetExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = PattoStockWidgetExtension.appex; sourceTree = BUILT_PRODUCTS_DIR; };
+		B6A33A522F606786004EBEBA /* WidgetKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WidgetKit.framework; path = System/Library/Frameworks/WidgetKit.framework; sourceTree = SDKROOT; };
+		B6A33A542F606786004EBEBA /* SwiftUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftUI.framework; path = System/Library/Frameworks/SwiftUI.framework; sourceTree = SDKROOT; };
+		B6A33A692F6068FA004EBEBA /* PattoStockWidgetExtension.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = PattoStockWidgetExtension.entitlements; sourceTree = "<group>"; };
 /* End PBXFileReference section */
+
+/* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
+		B6A33A642F606787004EBEBA /* Exceptions for "PattoStockWidget" folder in "PattoStockWidgetExtension" target */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				Info.plist,
+			);
+			target = B6A33A502F606786004EBEBA /* PattoStockWidgetExtension */;
+		};
+/* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
 		B6A3390C2F604975004EBEBA /* PattoStock */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
 			path = PattoStock;
+			sourceTree = "<group>";
+		};
+		B6A33A562F606786004EBEBA /* PattoStockWidget */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			exceptions = (
+				B6A33A642F606787004EBEBA /* Exceptions for "PattoStockWidget" folder in "PattoStockWidgetExtension" target */,
+			);
+			path = PattoStockWidget;
 			sourceTree = "<group>";
 		};
 /* End PBXFileSystemSynchronizedRootGroup section */
@@ -23,6 +80,18 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B6A339472F60526A004EBEBA /* FirebaseCore in Frameworks */,
+				B6A339492F60527B004EBEBA /* FirebaseFirestore in Frameworks */,
+				B6A3394B2F60528A004EBEBA /* FirebaseAuth in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		B6A33A4E2F606786004EBEBA /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B6A33A552F606786004EBEBA /* SwiftUI.framework in Frameworks */,
+				B6A33A532F606786004EBEBA /* WidgetKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -32,8 +101,12 @@
 		B6A339012F604975004EBEBA = {
 			isa = PBXGroup;
 			children = (
+				B6A33A692F6068FA004EBEBA /* PattoStockWidgetExtension.entitlements */,
 				B6A3390C2F604975004EBEBA /* PattoStock */,
+				B6A33A562F606786004EBEBA /* PattoStockWidget */,
 				B6A3390B2F604975004EBEBA /* Products */,
+				B6A339432F604F70004EBEBA /* GoogleService-Info.plist */,
+				B6A339452F60526A004EBEBA /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -41,8 +114,18 @@
 			isa = PBXGroup;
 			children = (
 				B6A3390A2F604975004EBEBA /* PattoStock.app */,
+				B6A33A512F606786004EBEBA /* PattoStockWidgetExtension.appex */,
 			);
 			name = Products;
+			sourceTree = "<group>";
+		};
+		B6A339452F60526A004EBEBA /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				B6A33A522F606786004EBEBA /* WidgetKit.framework */,
+				B6A33A542F606786004EBEBA /* SwiftUI.framework */,
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -55,20 +138,47 @@
 				B6A339062F604975004EBEBA /* Sources */,
 				B6A339072F604975004EBEBA /* Frameworks */,
 				B6A339082F604975004EBEBA /* Resources */,
+				B6A33A612F606787004EBEBA /* Embed Foundation Extensions */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				B6A33A5F2F606787004EBEBA /* PBXTargetDependency */,
 			);
 			fileSystemSynchronizedGroups = (
 				B6A3390C2F604975004EBEBA /* PattoStock */,
 			);
 			name = PattoStock;
 			packageProductDependencies = (
+				B6A339462F60526A004EBEBA /* FirebaseCore */,
+				B6A339482F60527B004EBEBA /* FirebaseFirestore */,
+				B6A3394A2F60528A004EBEBA /* FirebaseAuth */,
 			);
 			productName = PattoStock;
 			productReference = B6A3390A2F604975004EBEBA /* PattoStock.app */;
 			productType = "com.apple.product-type.application";
+		};
+		B6A33A502F606786004EBEBA /* PattoStockWidgetExtension */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = B6A33A652F606787004EBEBA /* Build configuration list for PBXNativeTarget "PattoStockWidgetExtension" */;
+			buildPhases = (
+				B6A33A4D2F606786004EBEBA /* Sources */,
+				B6A33A4E2F606786004EBEBA /* Frameworks */,
+				B6A33A4F2F606786004EBEBA /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			fileSystemSynchronizedGroups = (
+				B6A33A562F606786004EBEBA /* PattoStockWidget */,
+			);
+			name = PattoStockWidgetExtension;
+			packageProductDependencies = (
+			);
+			productName = PattoStockWidgetExtension;
+			productReference = B6A33A512F606786004EBEBA /* PattoStockWidgetExtension.appex */;
+			productType = "com.apple.product-type.app-extension";
 		};
 /* End PBXNativeTarget section */
 
@@ -83,6 +193,9 @@
 					B6A339092F604975004EBEBA = {
 						CreatedOnToolsVersion = 26.3;
 					};
+					B6A33A502F606786004EBEBA = {
+						CreatedOnToolsVersion = 26.3;
+					};
 				};
 			};
 			buildConfigurationList = B6A339052F604975004EBEBA /* Build configuration list for PBXProject "PattoStock" */;
@@ -94,18 +207,30 @@
 			);
 			mainGroup = B6A339012F604975004EBEBA;
 			minimizedProjectReferenceProxies = 1;
+			packageReferences = (
+				B6A339422F604D27004EBEBA /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
+			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = B6A3390B2F604975004EBEBA /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
 				B6A339092F604975004EBEBA /* PattoStock */,
+				B6A33A502F606786004EBEBA /* PattoStockWidgetExtension */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
 		B6A339082F604975004EBEBA /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B6A339442F604F70004EBEBA /* GoogleService-Info.plist in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		B6A33A4F2F606786004EBEBA /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -122,7 +247,22 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		B6A33A4D2F606786004EBEBA /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		B6A33A5F2F606787004EBEBA /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = B6A33A502F606786004EBEBA /* PattoStockWidgetExtension */;
+			targetProxy = B6A33A5E2F606787004EBEBA /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
 		B6A339132F604975004EBEBA /* Debug */ = {
@@ -251,6 +391,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = PattoStock/PattoStock.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 976WT2WW6X;
@@ -258,6 +399,7 @@
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_NSCameraUsageDescription = "バーコードスキャンのためにカメラを使用します";
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
@@ -283,6 +425,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = PattoStock/PattoStock.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 976WT2WW6X;
@@ -290,6 +433,7 @@
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_NSCameraUsageDescription = "バーコードスキャンのためにカメラを使用します";
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
@@ -303,6 +447,68 @@
 				STRING_CATALOG_GENERATE_SYMBOLS = YES;
 				SWIFT_APPROACHABLE_CONCURRENCY = YES;
 				SWIFT_DEFAULT_ACTOR_ISOLATION = MainActor;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		B6A33A622F606787004EBEBA /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
+				CODE_SIGN_ENTITLEMENTS = PattoStockWidgetExtension.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 976WT2WW6X;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = PattoStockWidget/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = PattoStockWidget;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.yuuki.PattoStock.PattoStockWidget;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				STRING_CATALOG_GENERATE_SYMBOLS = YES;
+				SWIFT_APPROACHABLE_CONCURRENCY = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		B6A33A632F606787004EBEBA /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
+				CODE_SIGN_ENTITLEMENTS = PattoStockWidgetExtension.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 976WT2WW6X;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = PattoStockWidget/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = PattoStockWidget;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.yuuki.PattoStock.PattoStockWidget;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				STRING_CATALOG_GENERATE_SYMBOLS = YES;
+				SWIFT_APPROACHABLE_CONCURRENCY = YES;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
 				SWIFT_VERSION = 5.0;
@@ -331,7 +537,45 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
+		B6A33A652F606787004EBEBA /* Build configuration list for PBXNativeTarget "PattoStockWidgetExtension" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				B6A33A622F606787004EBEBA /* Debug */,
+				B6A33A632F606787004EBEBA /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		B6A339422F604D27004EBEBA /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/firebase/firebase-ios-sdk";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 12.10.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		B6A339462F60526A004EBEBA /* FirebaseCore */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = B6A339422F604D27004EBEBA /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseCore;
+		};
+		B6A339482F60527B004EBEBA /* FirebaseFirestore */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = B6A339422F604D27004EBEBA /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseFirestore;
+		};
+		B6A3394A2F60528A004EBEBA /* FirebaseAuth */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = B6A339422F604D27004EBEBA /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseAuth;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = B6A339022F604975004EBEBA /* Project object */;
 }

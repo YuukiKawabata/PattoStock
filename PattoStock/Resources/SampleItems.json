@@ -1,0 +1,14 @@
+[
+    { "name": "トイレットペーパー", "category": "日用品", "threshold": 2, "restockAmount": 4 },
+    { "name": "ティッシュ", "category": "日用品", "threshold": 2, "restockAmount": 5 },
+    { "name": "シャンプー", "category": "衛生用品", "threshold": 1, "restockAmount": 1 },
+    { "name": "ボディソープ", "category": "衛生用品", "threshold": 1, "restockAmount": 1 },
+    { "name": "洗濯洗剤", "category": "洗剤", "threshold": 1, "restockAmount": 1 },
+    { "name": "食器用洗剤", "category": "洗剤", "threshold": 1, "restockAmount": 1 },
+    { "name": "牛乳", "category": "飲料", "threshold": 1, "restockAmount": 2 },
+    { "name": "パン", "category": "食品", "threshold": 1, "restockAmount": 1 },
+    { "name": "卵", "category": "食品", "threshold": 1, "restockAmount": 1 },
+    { "name": "米", "category": "食品", "threshold": 1, "restockAmount": 1 },
+    { "name": "歯磨き粉", "category": "衛生用品", "threshold": 1, "restockAmount": 1 },
+    { "name": "ゴミ袋", "category": "日用品", "threshold": 1, "restockAmount": 1 }
+]
