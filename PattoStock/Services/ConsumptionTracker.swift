@@ -9,10 +9,7 @@ final class ConsumptionTracker {
     private var db: Firestore { Firestore.firestore() }
 
     private var collectionPath: String {
-        if let uid = AuthManager.shared.currentUserId {
-            return "users/\(uid)/consumptionEvents"
-        }
-        return "consumptionEvents"
+        HouseholdManager.shared.consumptionEventsCollectionPath
     }
 
     func recordConsumption(item: InventoryItem, quantity: Int) async {

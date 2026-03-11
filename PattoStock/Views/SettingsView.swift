@@ -2,11 +2,13 @@ import SwiftUI
 
 struct SettingsView: View {
     @Environment(FirestoreManager.self) private var manager
+    @Environment(HouseholdManager.self) private var householdManager
 
     @State private var notificationManager = NotificationManager.shared
     @State private var authManager = AuthManager.shared
     @State private var showSignIn = false
     @State private var showDeleteAccountConfirmation = false
+    @State private var showFamilySharing = false
 
     private let weekdays = [
         (1, "日曜日"), (2, "月曜日"), (3, "火曜日"), (4, "水曜日"),
@@ -17,12 +19,16 @@ struct SettingsView: View {
         NavigationStack {
             Form {
                 notificationSection
+                familySharingSection
                 accountSection
                 aboutSection
             }
             .navigationTitle("設定")
             .sheet(isPresented: $showSignIn) {
                 SignInView()
+            }
+            .sheet(isPresented: $showFamilySharing) {
+                FamilySharingView()
             }
         }
     }
@@ -47,6 +53,36 @@ struct SettingsView: View {
                     Task {
                         _ = await notificationManager.requestAuthorization()
                     }
+                }
+            }
+        }
+    }
+
+    private var familySharingSection: some View {
+        Section("ファミリー共有") {
+            if let household = householdManager.currentHousehold {
+                HStack {
+                    Image(systemName: "house.fill")
+                        .foregroundStyle(.accentColor)
+                    Text(household.name)
+                }
+                Button {
+                    showFamilySharing = true
+                } label: {
+                    HStack {
+                        Text("世帯を管理")
+                        Spacer()
+                        Image(systemName: "chevron.right")
+                            .foregroundStyle(.secondary)
+                            .font(.caption)
+                    }
+                }
+                .foregroundStyle(.primary)
+            } else {
+                Button {
+                    showFamilySharing = true
+                } label: {
+                    Label("ファミリー共有を設定する", systemImage: "person.2.fill")
                 }
             }
         }
