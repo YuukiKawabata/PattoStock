@@ -1,0 +1,25 @@
+# Firebase / Google Cloud
+GoogleService-Info.plist
+
+# Xcode
+build/
+DerivedData/
+*.xcuserstate
+xcuserdata/
+
+# CocoaPods
+Pods/
+
+# Swift Package Manager
+.build/
+Package.resolved
+
+# macOS
+.DS_Store
+*.swp
+*~
+
+# Secrets
+*.pem
+*.p12
+*.key
