@@ -128,7 +128,9 @@ struct SettingsView: View {
                 Text(Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String ?? "1.0")
                     .foregroundStyle(.secondary)
             }
-            Link("プライバシーポリシー", destination: URL(string: "https://example.com/privacy")!)
+            NavigationLink("プライバシーポリシー") {
+                PrivacyPolicyView()
+            }
         }
     }
 }

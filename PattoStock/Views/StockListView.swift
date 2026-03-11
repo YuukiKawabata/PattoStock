@@ -43,7 +43,7 @@ struct StockListView: View {
                     )
                 }
             }
-            .navigationTitle("PattoStock")
+            .navigationTitle("Patto")
             .searchable(text: $searchText, prompt: "商品名を検索")
             .toolbar {
                 ToolbarItem(placement: .topBarTrailing) {
