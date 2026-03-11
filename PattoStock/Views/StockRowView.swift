@@ -64,11 +64,12 @@ struct StockRowView: View {
         .contentShape(Rectangle())
         .onTapGesture { onTap() }
         .swipeActions(edge: .trailing, allowsFullSwipe: false) {
-            Button(role: .destructive) {
+            Button {
                 showDeleteConfirmation = true
             } label: {
                 Label("削除", systemImage: "trash")
             }
+            .tint(.red)
         }
         .confirmationDialog("「\(item.name)」を削除しますか？", isPresented: $showDeleteConfirmation, titleVisibility: .visible) {
             Button("削除", role: .destructive) {

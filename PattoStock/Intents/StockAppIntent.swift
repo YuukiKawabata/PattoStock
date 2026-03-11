@@ -277,28 +277,28 @@ struct GetPredictionsIntent: AppIntent {
         let db = Firestore.firestore()
 
         let itemsSnapshot = try await db.collection(itemsCollectionPath).getDocuments()
-        let items: [InventoryItem] = itemsSnapshot.documents.compactMap { try? $0.data(as: InventoryItem.self) }
 
         let startDate = Calendar.current.date(byAdding: .day, value: -30, to: Date()) ?? Date()
         let eventsSnapshot = try await db.collection(consumptionCollectionPath)
             .whereField("date", isGreaterThan: Timestamp(date: startDate))
             .order(by: "date", descending: true)
             .getDocuments()
-        let events: [ConsumptionEvent] = eventsSnapshot.documents.compactMap { try? $0.data(as: ConsumptionEvent.self) }
 
-        let predictions = await MainActor.run {
+        let dialogText: String = await MainActor.run {
+            let items: [InventoryItem] = itemsSnapshot.documents.compactMap { try? $0.data(as: InventoryItem.self) }
+            let events: [ConsumptionEvent] = eventsSnapshot.documents.compactMap { try? $0.data(as: ConsumptionEvent.self) }
+
             let engine = PredictionEngine()
-            return engine.predictAll(items: items, events: events)
+            let predictions = engine.predictAll(items: items, events: events)
+            let urgent = predictions.filter { $0.isUrgent }
+
+            if urgent.isEmpty {
+                return "3日以内に切れそうなものはありません。"
+            }
+            return "3日以内に切れそうなもの: " + urgent.map { "\($0.itemName)（\($0.predictionText)）" }.joined(separator: "、")
         }
 
-        let urgent = predictions.filter { $0.isUrgent }
-
-        if urgent.isEmpty {
-            return .result(dialog: "3日以内に切れそうなものはありません。")
-        }
-
-        let list = urgent.map { "\($0.itemName)（\($0.predictionText)）" }.joined(separator: "、")
-        return .result(dialog: "3日以内に切れそうなもの: \(list)")
+        return .result(dialog: "\(dialogText)")
     }
 }
 

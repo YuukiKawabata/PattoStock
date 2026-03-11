@@ -1,5 +1,6 @@
 import Foundation
 import FirebaseFirestore
+import SwiftUI
 
 @Observable
 @MainActor
@@ -50,8 +51,11 @@ final class FirestoreManager {
                 guard let snapshot else { return }
 
                 let oldItems = self.items
-                self.items = snapshot.documents.compactMap { doc in
+                let newItems = snapshot.documents.compactMap { doc in
                     try? doc.data(as: InventoryItem.self)
+                }
+                withAnimation {
+                    self.items = newItems
                 }
 
                 self.checkStatusChanges(oldItems: oldItems, newItems: self.items)
