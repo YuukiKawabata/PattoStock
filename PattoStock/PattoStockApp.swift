@@ -6,6 +6,7 @@ import AppIntents
 @main
 struct PattoStockApp: App {
     @State private var firestoreManager = FirestoreManager()
+    @State private var householdManager = HouseholdManager.shared
 
     init() {
         FirebaseApp.configure()
@@ -15,9 +16,7 @@ struct PattoStockApp: App {
         WindowGroup {
             ContentView()
                 .environment(firestoreManager)
-                .onAppear {
-                    firestoreManager.startListening()
-                }
+                .environment(householdManager)
                 .task {
                     PattoStockShortcuts.updateAppShortcutParameters()
                     _ = await NotificationManager.shared.requestAuthorization()
@@ -26,6 +25,10 @@ struct PattoStockApp: App {
                     if !AuthManager.shared.isSignedIn {
                         try? await AuthManager.shared.signInAnonymously()
                     }
+
+                    // Load household first, then start listening on the correct path
+                    await householdManager.loadCurrentHousehold()
+                    firestoreManager.startListening()
                 }
         }
     }

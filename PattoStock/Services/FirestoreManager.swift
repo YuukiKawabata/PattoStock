@@ -12,10 +12,7 @@ final class FirestoreManager {
     private var listener: ListenerRegistration?
 
     private var collectionPath: String {
-        if let uid = AuthManager.shared.currentUserId {
-            return "users/\(uid)/items"
-        }
-        return "items"
+        HouseholdManager.shared.itemsCollectionPath
     }
 
     var outOfStockItems: [InventoryItem] {
@@ -66,6 +63,10 @@ final class FirestoreManager {
     func stopListening() {
         listener?.remove()
         listener = nil
+    }
+
+    func restartListening() {
+        startListening()
     }
 
     func addItem(_ item: InventoryItem) async throws {

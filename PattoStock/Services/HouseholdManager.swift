@@ -4,6 +4,9 @@ import FirebaseFirestore
 @Observable
 @MainActor
 final class HouseholdManager {
+    static let shared = HouseholdManager()
+    private init() {}
+
     var currentHousehold: Household?
     var errorMessage: String?
 
@@ -17,8 +20,9 @@ final class HouseholdManager {
             try await db.collection("users").document(uid).setData(
                 ["householdId": ref.documentID], merge: true
             )
-            currentHousehold = household
-            currentHousehold?.id = ref.documentID
+            var created = household
+            created.id = ref.documentID
+            currentHousehold = created
         } catch {
             errorMessage = "世帯の作成に失敗しました: \(error.localizedDescription)"
             throw error
@@ -37,8 +41,12 @@ final class HouseholdManager {
             )
             let doc = try await docRef.getDocument()
             currentHousehold = try doc.data(as: Household.self)
-        } catch {
-            errorMessage = "世帯への参加に失敗しました: \(error.localizedDescription)"
+        } catch let error as NSError {
+            if error.domain == "FIRFirestoreErrorDomain" && error.code == 5 {
+                errorMessage = "招待コードが見つかりません。コードを確認してください。"
+            } else {
+                errorMessage = "世帯への参加に失敗しました: \(error.localizedDescription)"
+            }
             throw error
         }
     }
@@ -72,11 +80,23 @@ final class HouseholdManager {
         }
     }
 
-    /// Firestore path for the current scope (household or user)
-    var itemsCollectionPath: String? {
+    var itemsCollectionPath: String {
         if let householdId = currentHousehold?.id {
             return "households/\(householdId)/items"
         }
-        return nil
+        if let uid = AuthManager.shared.currentUserId {
+            return "users/\(uid)/items"
+        }
+        return "items"
+    }
+
+    var consumptionEventsCollectionPath: String {
+        if let householdId = currentHousehold?.id {
+            return "households/\(householdId)/consumptionEvents"
+        }
+        if let uid = AuthManager.shared.currentUserId {
+            return "users/\(uid)/consumptionEvents"
+        }
+        return "consumptionEvents"
     }
 }
