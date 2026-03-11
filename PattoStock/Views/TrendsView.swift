@@ -12,6 +12,17 @@ struct TrendsView: View {
     var body: some View {
         NavigationStack {
             List {
+                Section {
+                    Picker("期間", selection: $selectedPeriod) {
+                        ForEach(periods, id: \.self) { period in
+                            Text("\(period)日").tag(period)
+                        }
+                    }
+                    .pickerStyle(.segmented)
+                }
+                .listRowInsets(EdgeInsets(top: 8, leading: 16, bottom: 8, trailing: 16))
+                .listRowBackground(Color.clear)
+
                 if tracker.events.isEmpty {
                     ContentUnavailableView(
                         "データなし",
@@ -25,17 +36,6 @@ struct TrendsView: View {
                 }
             }
             .navigationTitle("トレンド")
-            .toolbar {
-                ToolbarItem(placement: .topBarTrailing) {
-                    Picker("期間", selection: $selectedPeriod) {
-                        ForEach(periods, id: \.self) { period in
-                            Text("\(period)日").tag(period)
-                        }
-                    }
-                    .pickerStyle(.segmented)
-                    .frame(width: 180)
-                }
-            }
             .task { await tracker.loadEvents(days: selectedPeriod) }
             .onChange(of: selectedPeriod) { _, newValue in
                 Task { await tracker.loadEvents(days: newValue) }
@@ -75,6 +75,12 @@ struct TrendsView: View {
                     y: .value("消費量", data.totalQuantity)
                 )
                 .foregroundStyle(.blue.gradient)
+            }
+            .chartXAxis {
+                AxisMarks(values: .stride(by: .day, count: selectedPeriod <= 7 ? 1 : selectedPeriod <= 14 ? 2 : 7)) { value in
+                    AxisGridLine()
+                    AxisValueLabel(format: .dateTime.month(.defaultDigits).day())
+                }
             }
             .frame(height: 200)
             .padding(.vertical, 8)
