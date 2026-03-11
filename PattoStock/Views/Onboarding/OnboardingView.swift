@@ -38,7 +38,7 @@ struct OnboardingView: View {
             Image(systemName: "shippingbox.fill")
                 .font(.system(size: 80))
                 .foregroundStyle(Color.accentColor)
-            Text("PattoStock へようこそ")
+            Text("Patto へようこそ")
                 .font(.largeTitle.bold())
             Text("家の在庫をパッと確認、\nパッと管理できるアプリです")
                 .font(.body)

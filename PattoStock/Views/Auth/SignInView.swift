@@ -15,7 +15,7 @@ struct SignInView: View {
                     Image(systemName: "shippingbox.fill")
                         .font(.system(size: 60))
                         .foregroundStyle(Color.accentColor)
-                    Text("PattoStock")
+                    Text("Patto")
                         .font(.largeTitle.bold())
                     Text("サインインしてデータを安全に保存")
                         .font(.subheadline)
