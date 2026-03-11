@@ -23,7 +23,7 @@ final class ConsumptionTracker {
             category: item.category,
             quantity: quantity
         )
-        try? db.collection(collectionPath).addDocument(from: event)
+        _ = try? db.collection(collectionPath).addDocument(from: event)
     }
 
     func loadEvents(days: Int = 30) async {

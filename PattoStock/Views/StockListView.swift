@@ -22,23 +22,25 @@ struct StockListView: View {
 
     var body: some View {
         NavigationStack {
-            VStack(spacing: 0) {
+            List {
                 if !manager.categories.isEmpty {
-                    categoryFilter
+                    Section {
+                        categoryFilter
+                    }
+                    .listRowInsets(EdgeInsets())
+                    .listRowBackground(Color.clear)
                 }
 
-                List {
-                    stockSection(items: outOfStock, label: "在庫切れ", icon: "exclamationmark.triangle.fill", color: .red)
-                    stockSection(items: lowStock, label: "残りわずか", icon: "exclamationmark.circle.fill", color: .yellow)
-                    stockSection(items: inStock, label: "在庫あり", icon: "checkmark.circle.fill", color: .green)
+                stockSection(items: outOfStock, label: "在庫切れ", icon: "exclamationmark.triangle.fill", color: .red)
+                stockSection(items: lowStock, label: "残りわずか", icon: "exclamationmark.circle.fill", color: .yellow)
+                stockSection(items: inStock, label: "在庫あり", icon: "checkmark.circle.fill", color: .green)
 
-                    if filteredItems.isEmpty {
-                        ContentUnavailableView(
-                            searchText.isEmpty ? "アイテムがありません" : "見つかりません",
-                            systemImage: searchText.isEmpty ? "tray" : "magnifyingglass",
-                            description: Text(searchText.isEmpty ? "右上の＋ボタンから追加してください" : "「\(searchText)」に一致するアイテムはありません")
-                        )
-                    }
+                if filteredItems.isEmpty {
+                    ContentUnavailableView(
+                        searchText.isEmpty ? "アイテムがありません" : "見つかりません",
+                        systemImage: searchText.isEmpty ? "tray" : "magnifyingglass",
+                        description: Text(searchText.isEmpty ? "右上の＋ボタンから追加してください" : "「\(searchText)」に一致するアイテムはありません")
+                    )
                 }
             }
             .navigationTitle("PattoStock")

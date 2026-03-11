@@ -14,6 +14,7 @@ struct ItemFormSheet: View {
     @State private var barcode: String
     @State private var errorMessage: String?
     @State private var showBarcodeScanner = false
+    @State private var showDeleteConfirmation = false
 
     private let categories = ["食品", "飲料", "日用品", "洗剤", "衛生用品", "その他"]
 
@@ -65,6 +66,14 @@ struct ItemFormSheet: View {
                             .font(.caption)
                     }
                 }
+
+                if isEditing {
+                    Section {
+                        Button("このアイテムを削除", role: .destructive) {
+                            showDeleteConfirmation = true
+                        }
+                    }
+                }
             }
             .navigationTitle(isEditing ? "アイテム編集" : "アイテム追加")
             .navigationBarTitleDisplayMode(.inline)
@@ -77,6 +86,19 @@ struct ItemFormSheet: View {
                         saveItem()
                     }
                     .disabled(name.isEmpty || category.isEmpty)
+                }
+            }
+            .confirmationDialog("「\(name)」を削除しますか？", isPresented: $showDeleteConfirmation, titleVisibility: .visible) {
+                Button("削除", role: .destructive) {
+                    guard let id = editingItem?.id else { return }
+                    Task {
+                        do {
+                            try await manager.deleteItem(id: id)
+                            dismiss()
+                        } catch {
+                            errorMessage = error.localizedDescription
+                        }
+                    }
                 }
             }
             .sheet(isPresented: $showBarcodeScanner) {
