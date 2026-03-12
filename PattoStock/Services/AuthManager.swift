@@ -2,19 +2,39 @@ import Foundation
 import FirebaseCore
 import FirebaseAuth
 import AuthenticationServices
+import CryptoKit
 
 @Observable
 @MainActor
 final class AuthManager {
     static let shared = AuthManager()
 
-    var currentUserId: String? { Auth.auth().currentUser?.uid }
-    var isSignedIn: Bool { Auth.auth().currentUser != nil }
-    var isAnonymous: Bool { Auth.auth().currentUser?.isAnonymous ?? false }
-    var userEmail: String? { Auth.auth().currentUser?.email }
+    var currentUserId: String?
+    var isSignedIn: Bool = false
+    var isAnonymous: Bool = false
+    var userEmail: String?
     var errorMessage: String?
 
-    private init() {}
+    private(set) var currentNonce: String?
+    private var authStateHandle: AuthStateDidChangeListenerHandle?
+
+    private init() {
+        authStateHandle = Auth.auth().addStateDidChangeListener { [weak self] _, user in
+            Task { @MainActor in
+                self?.currentUserId = user?.uid
+                self?.isSignedIn = user != nil
+                self?.isAnonymous = user?.isAnonymous ?? false
+                self?.userEmail = user?.email
+            }
+        }
+    }
+
+    func prepareRequest(_ request: ASAuthorizationAppleIDRequest) {
+        let nonce = randomNonceString()
+        currentNonce = nonce
+        request.requestedScopes = [.email, .fullName]
+        request.nonce = sha256(nonce)
+    }
 
     func signInAnonymously() async throws {
         do {
@@ -43,9 +63,14 @@ final class AuthManager {
             return
         }
 
+        guard let nonce = currentNonce else {
+            errorMessage = "nonceが見つかりません。もう一度お試しください。"
+            return
+        }
+
         let credential = OAuthProvider.appleCredential(
             withIDToken: tokenString,
-            rawNonce: nil,
+            rawNonce: nonce,
             fullName: appleIDCredential.fullName
         )
 
@@ -82,5 +107,24 @@ final class AuthManager {
 
     func clearError() {
         errorMessage = nil
+    }
+
+    // MARK: - Private
+
+    private func randomNonceString(length: Int = 32) -> String {
+        precondition(length > 0)
+        var randomBytes = [UInt8](repeating: 0, count: length)
+        let errorCode = SecRandomCopyBytes(kSecRandomDefault, randomBytes.count, &randomBytes)
+        if errorCode != errSecSuccess {
+            fatalError("Unable to generate nonce. SecRandomCopyBytes failed with OSStatus \(errorCode)")
+        }
+        let charset: [Character] = Array("0123456789ABCDEFGHIJKLMNOPQRSTUVXYZabcdefghijklmnopqrstuvwxyz-._")
+        return String(randomBytes.map { charset[Int($0) % charset.count] })
+    }
+
+    private func sha256(_ input: String) -> String {
+        let inputData = Data(input.utf8)
+        let hashedData = SHA256.hash(data: inputData)
+        return hashedData.compactMap { String(format: "%02x", $0) }.joined()
     }
 }

@@ -24,7 +24,7 @@ struct SignInView: View {
 
                 VStack(spacing: 16) {
                     SignInWithAppleButton(.signIn) { request in
-                        request.requestedScopes = [.email, .fullName]
+                        authManager.prepareRequest(request)
                     } onCompletion: { result in
                         handleSignInResult(result)
                     }
@@ -70,6 +70,7 @@ struct SignInView: View {
                 }
             }
         case .failure(let error):
+            if (error as? ASAuthorizationError)?.code == .canceled { return }
             errorMessage = error.localizedDescription
         }
     }
