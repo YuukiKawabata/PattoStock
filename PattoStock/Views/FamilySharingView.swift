@@ -52,7 +52,7 @@ struct FamilySharingView: View {
                 VStack(spacing: 12) {
                     Image(systemName: "person.3.fill")
                         .font(.system(size: 50))
-                        .foregroundStyle(.accentColor)
+                        .foregroundStyle(Color.accentColor)
                         .padding(.top, 16)
                     Text("ファミリー共有")
                         .font(.title2.bold())

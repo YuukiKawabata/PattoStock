@@ -20,6 +20,7 @@ struct SettingsView: View {
             Form {
                 notificationSection
                 familySharingSection
+                siriSection
                 accountSection
                 aboutSection
             }
@@ -63,7 +64,7 @@ struct SettingsView: View {
             if let household = householdManager.currentHousehold {
                 HStack {
                     Image(systemName: "house.fill")
-                        .foregroundStyle(.accentColor)
+                        .foregroundStyle(Color.accentColor)
                     Text(household.name)
                 }
                 Button {
@@ -84,6 +85,16 @@ struct SettingsView: View {
                 } label: {
                     Label("ファミリー共有を設定する", systemImage: "person.2.fill")
                 }
+            }
+        }
+    }
+
+    private var siriSection: some View {
+        Section("Siri・ショートカット") {
+            NavigationLink {
+                SiriGuideView()
+            } label: {
+                Label("Siri使い方ガイド", systemImage: "mic.fill")
             }
         }
     }
