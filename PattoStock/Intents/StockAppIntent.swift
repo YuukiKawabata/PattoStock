@@ -373,7 +373,7 @@ struct AddNewItemIntent: AppIntent {
 
 // MARK: - Shortcuts
 
-struct PattoStockShortcuts: AppShortcutsProvider {
+struct PattoShortcuts: AppShortcutsProvider {
     static var appShortcuts: [AppShortcut] {
         AppShortcut(
             intent: ReduceStockIntent(),
