@@ -4,7 +4,7 @@ import FirebaseAuth
 import AppIntents
 
 @main
-struct PattoStockApp: App {
+struct PattoApp: App {
     @State private var firestoreManager = FirestoreManager()
     @State private var householdManager = HouseholdManager.shared
 
@@ -18,7 +18,7 @@ struct PattoStockApp: App {
                 .environment(firestoreManager)
                 .environment(householdManager)
                 .task {
-                    PattoStockShortcuts.updateAppShortcutParameters()
+                    PattoShortcuts.updateAppShortcutParameters()
                     _ = await NotificationManager.shared.requestAuthorization()
 
                     // Sign in anonymously if not signed in

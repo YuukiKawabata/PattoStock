@@ -9,7 +9,7 @@ import WidgetKit
 import SwiftUI
 
 @main
-struct PattoStockWidgetBundle: WidgetBundle {
+struct PattoWidgetBundle: WidgetBundle {
     var body: some Widget {
         ShoppingListWidget()
     }
